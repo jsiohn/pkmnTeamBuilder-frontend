@@ -1,7 +1,8 @@
 import "./App.css";
-import { useState } from "react";
-// import { Routes, Route } from "react-router-dom";
+// import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
+import Main from "../Main/Main";
 // import PokedexPage from "../PokedexPage/PokedexPage";
 // import About from "../About/About";
 // import Footer from "../Footer/Footer";
@@ -16,11 +17,11 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header />
-        {/* <Routes>
+        <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/dex" element={<PokedexPage />} />
-          <Route path="/about" element={<About />} />
-        </Routes> */}
+          {/* <Route path="/dex" element={<PokedexPage />} />
+          <Route path="/about" element={<About />} /> */}
+        </Routes>
 
         {/* <Footer /> */}
       </div>
