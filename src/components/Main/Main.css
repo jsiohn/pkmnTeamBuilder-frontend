@@ -1,3 +1,7 @@
+.main {
+  flex: 1;
+}
+
 .main__title {
   margin: 0;
   padding: 30px 0 20px;

@@ -1,0 +1,25 @@
+.about {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+}
+
+.about__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.author__picture {
+  scale: 75%;
+}
+
+.about__title {
+  margin: 0;
+  text-align: center;
+}
+
+.about__text {
+  margin: 0;
+  text-align: center;
+}

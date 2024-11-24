@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 // import PokedexPage from "../PokedexPage/PokedexPage";
-// import About from "../About/About";
-// import Footer from "../Footer/Footer";
+import About from "../About/About";
+import Footer from "../Footer/Footer";
 // import PokemonModal from "../PokemonModal/PokemonModal";
 // import SuggestTeamModal from "../SuggestTeamModal/SuggestTeamModal";
 
@@ -19,11 +19,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          {/* <Route path="/dex" element={<PokedexPage />} />
-          <Route path="/about" element={<About />} /> */}
+          {/* <Route path="/dex" element={<PokedexPage />} /> */}
+          <Route path="/about" element={<About />} />
         </Routes>
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
       {/* <PokemonModal />
       <SuggestTeamModal /> */}
