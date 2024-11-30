@@ -14,5 +14,5 @@
 
 .nav__link:hover {
   cursor: pointer;
-  opacity: 0.5;
+  color: #2f71e5;
 }
