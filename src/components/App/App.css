@@ -1,6 +1,7 @@
 .page {
   font-family: "JetBrainsMono-Regular";
   background-color: #cfcfcf;
+  max-width: 100%;
 }
 
 .page__content {
@@ -10,4 +11,14 @@
   padding: 0 20px;
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 500px) {
+  .page {
+    padding: 0;
+  }
+
+  .page__content {
+    padding: 0;
+  }
 }

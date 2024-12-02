@@ -16,3 +16,10 @@
   cursor: pointer;
   color: #2f71e5;
 }
+
+@media screen and (max-width: 500px) {
+  .nav__links {
+    flex-direction: column;
+    gap: 10;
+  }
+}

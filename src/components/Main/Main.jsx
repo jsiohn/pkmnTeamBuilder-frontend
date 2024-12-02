@@ -15,8 +15,11 @@ function Main() {
       <h2 className="main__title">Pages</h2>
       <p className="main__text">
         The "About" button will show you a little bit about me, the author, in
-        case you're curious. The "PokeDex" button takes you to the full Pokedex
-        so that you can check out all the Pokemon available to you.
+        case you're curious. The "Pokedex" button takes you to the 1st Gen
+        Pokedex (the original 151) so that you can check out all the Pokemon
+        available to you. The reason for only using the 1st Generation is
+        resources and time. Perhaps I will flesh out the app to include the full
+        Pokedex soon!
       </p>
       <h2 className="main__title">But, why?</h2>
       <p className="main__text">

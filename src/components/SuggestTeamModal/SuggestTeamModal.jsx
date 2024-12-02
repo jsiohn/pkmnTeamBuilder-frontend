@@ -1,17 +1,42 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useState } from "react";
 
-function SuggestTeamModal({ isOpen, onClose }) {
+function SuggestTeamModal({ isOpen, handleSuggest, onClose }) {
+  const [type1, setType1] = useState("");
+  const [type2, setType2] = useState("");
+
+  const handleType1Change = (e) => {
+    setType1(e.target.value);
+  };
+
+  const handleType2Change = (e) => {
+    setType2(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSuggest({ type1, type2 });
+  };
+
   return (
     <ModalWithForm
       title="Suggest a Team"
       buttonText="Go!"
       onClose={onClose}
       isOpen={isOpen}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="type-1" className="modal__label">
         Type 1
       </label>
-      <select id="type-1" className="modal__input" name="type-1">
+      <select
+        id="type-1"
+        className="modal__input"
+        name="type-1"
+        value={type1}
+        onChange={handleType1Change}
+      >
+        <option value="">None</option>
         <option value="normal">Normal</option>
         <option value="fighting">Fighting</option>
         <option value="flying">Flying</option>
@@ -37,7 +62,14 @@ function SuggestTeamModal({ isOpen, onClose }) {
       <label htmlFor="type-2" className="modal__label">
         Type 2
       </label>
-      <select id="type-2" className="modal__input" name="type-2">
+      <select
+        id="type-2"
+        className="modal__input"
+        name="type-2"
+        value={type2}
+        onChange={handleType2Change}
+      >
+        <option value="">None</option>
         <option value="normal">Normal</option>
         <option value="fighting">Fighting</option>
         <option value="flying">Flying</option>

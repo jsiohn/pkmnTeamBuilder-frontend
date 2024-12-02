@@ -1,19 +1,21 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { baseUrl, getPokemon, pokemonData } from "../../utils/ThirdPartyApi";
+import { getPokemon, pokemonData } from "../../utils/ThirdPartyApi";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import PokedexPage from "../PokedexPage/PokedexPage";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
-// import PokemonModal from "../PokemonModal/PokemonModal";
 import SuggestTeamModal from "../SuggestTeamModal/SuggestTeamModal";
+import NotFound from "../NotFound/NotFound";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeModal, setActiveModal] = useState("");
   const [pokemon, setPokemon] = useState([]);
+  const [initialPokemon, setInitialPokemon] = useState([]);
 
   function handleSuggestClick() {
     setActiveModal("suggest");
@@ -23,25 +25,39 @@ function App() {
     setActiveModal("");
   }
 
+  function resetPokemon() {
+    setPokemon(initialPokemon);
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function handleSuggest({ type1, type2 }) {
+    const filteredPokemon = pokemon.filter(
+      (item) =>
+        item.types.some((typeObj) => typeObj.type.name === type1) ||
+        item.types.some((typeObj) => typeObj.type.name === type2)
+    );
+    const shuffledPokemon = shuffleArray(filteredPokemon).slice(0, 6);
+    setPokemon(shuffledPokemon);
+    closeActiveModal();
+  }
+
   useEffect(() => {
     getPokemon()
-      .then((data) => {
-        console.log(data);
-        const pokemonInfo = pokemonData(data);
+      .then((data) => pokemonData(data))
+      .then((pokemonInfo) => {
         setPokemon(pokemonInfo);
+        setInitialPokemon(pokemonInfo);
+        setIsLoading(false);
       })
       .catch(console.error);
   }, []);
-
-  // useEffect(() => {
-  //   getPokemon()
-  //     .then((data) => {
-  //       const pokemon = data;
-  //       setPokemon(pokemon);
-  //       console.log(pokemon); //debugging
-  //     })
-  //     .catch(console.error);
-  // }, []);
 
   return (
     <div className="page">
@@ -52,13 +68,19 @@ function App() {
           <Route
             path="/dex"
             element={
-              <PokedexPage
-                handleSuggestClick={handleSuggestClick}
-                pokemon={pokemon}
-              />
+              isLoading ? (
+                <Preloader />
+              ) : (
+                <PokedexPage
+                  handleSuggestClick={handleSuggestClick}
+                  resetPokemon={resetPokemon}
+                  pokemon={pokemon}
+                />
+              )
             }
           />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />
@@ -67,10 +89,9 @@ function App() {
         <SuggestTeamModal
           isOpen={activeModal === "suggest"}
           onClose={closeActiveModal}
+          handleSuggest={handleSuggest}
         />
       )}
-
-      {/* <PokemonModal /> */}
     </div>
   );
 }

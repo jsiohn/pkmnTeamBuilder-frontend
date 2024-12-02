@@ -13,3 +13,9 @@
   padding: 0 100px 0;
   text-align: center;
 }
+
+@media screen and (max-width: 500px) {
+  .main__text {
+    padding: 12px;
+  }
+}

@@ -11,10 +11,10 @@ function getPokemon() {
 }
 
 function pokemonData(data) {
-  data.results.map((pokemonItem) => {
-    console.log(pokemonItem); // debugging
-    return fetch(`${baseUrl}/pokemon/${pokemonItem.name}`);
+  const promises = data.results.map((pokemonItem) => {
+    return fetch(`${baseUrl}/pokemon/${pokemonItem.name}`).then(checkResponse);
   });
+  return Promise.all(promises);
 }
 
-export { baseUrl, getPokemon, pokemonData };
+export { getPokemon, pokemonData };

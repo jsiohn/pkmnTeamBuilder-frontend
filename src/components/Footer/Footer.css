@@ -23,3 +23,9 @@
   cursor: pointer;
   color: #2f71e5;
 }
+
+@media screen and (max-width: 780px) {
+  .footer {
+    padding-top: 20px;
+  }
+}

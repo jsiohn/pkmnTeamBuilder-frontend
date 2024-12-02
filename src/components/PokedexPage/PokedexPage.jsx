@@ -1,7 +1,7 @@
 import "./PokedexPage.css";
 import PokemonCard from "../PokemonCard/PokemonCard";
 
-function PokedexPage({ handleSuggestClick, pokemon }) {
+function PokedexPage({ handleSuggestClick, resetPokemon, pokemon }) {
   return (
     <main className="pokedex">
       <button
@@ -12,11 +12,21 @@ function PokedexPage({ handleSuggestClick, pokemon }) {
         Suggest a Team
       </button>
       <section className="pokedex__cards">
-        {/* <p className="pokedex__section">test test test test</p> */}
-        {/* <ul className="pokedex__list">
-          <PokemonCard key={pokemon._id} item={pokemon} />
-        </ul> */}
+        <ul className="pokedex__list">
+          {pokemon.length > 0 ? (
+            pokemon.map((item) => <PokemonCard key={item.id} item={item} />)
+          ) : (
+            <p className="pokemon__section-title">No Pokemon...</p>
+          )}
+        </ul>
       </section>
+      <button
+        type="button"
+        className="pokedex__reset-button"
+        onClick={resetPokemon}
+      >
+        Reset
+      </button>
     </main>
   );
 }

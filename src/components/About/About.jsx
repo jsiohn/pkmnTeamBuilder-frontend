@@ -5,7 +5,11 @@ function About() {
   return (
     <div className="about">
       <div className="about__author-pic-container">
-        <img src={selfie} alt="author picture" className="author__picture" />
+        <img
+          src={selfie}
+          alt="author picture"
+          className="about__author-picture"
+        />
       </div>
       <div className="about__text-container">
         <h3 className="about__title">Hi, I'm John!</h3>

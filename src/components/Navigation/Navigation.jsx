@@ -9,7 +9,7 @@ function Navigation() {
           <li className="nav__link-about">About</li>
         </Link>
         <Link to="/dex" className="nav__link">
-          <li className="nav__link-dex">PokeDex</li>
+          <li className="nav__link-dex">Pokedex</li>
         </Link>
       </ul>
     </div>

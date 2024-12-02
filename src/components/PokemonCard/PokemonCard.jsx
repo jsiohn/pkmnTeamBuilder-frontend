@@ -1,10 +1,16 @@
 import "./PokemonCard.css";
 
-function PokemonCard({ pokemon }) {
+function PokemonCard({ item, handleCardClick }) {
+  // console.log(item); // testing
   return (
     <li className="card">
-      <h4 className="card__title">{pokemon.name}</h4>
-      <img className="card__image" src={pokemon.sprite} alt={pokemon.name} />
+      <h4 className="card__title">{item.name}</h4>
+      <img
+        className="card__image"
+        src={item.sprites.front_default}
+        alt={item.name}
+        onClick={handleCardClick}
+      />
     </li>
   );
 }
