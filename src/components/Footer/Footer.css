@@ -1,0 +1,31 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.footer__copyright {
+  margin: 0;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: #000;
+}
+
+.footer__link:hover {
+  cursor: pointer;
+  color: #2f71e5;
+}
+
+@media screen and (max-width: 780px) {
+  .footer {
+    padding-top: 20px;
+  }
+}
