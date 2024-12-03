@@ -24,7 +24,7 @@ function Main() {
       <h2 className="main__title">But, why?</h2>
       <p className="main__text">
         Well, for those of us who have grown up spending time in the world of
-        Pokemon, we usually like to more about these little monsters. So I
+        Pokemon, we usually like to know more about these little monsters. So I
         decided to make my own take on a Pokedex and team builder that takes
         some of the guesswork out. Other sites may require that you already know
         the ins and outs of Pokemon but if you just want to see a list of
