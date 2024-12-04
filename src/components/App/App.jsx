@@ -1,32 +1,98 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { getPokemon, pokemonData } from "../../utils/ThirdPartyApi";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import PokedexPage from "../PokedexPage/PokedexPage";
+import About from "../About/About";
+import Footer from "../Footer/Footer";
+import SuggestTeamModal from "../SuggestTeamModal/SuggestTeamModal";
+import NotFound from "../NotFound/NotFound";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeModal, setActiveModal] = useState("");
+  const [pokemon, setPokemon] = useState([]);
+  const [initialPokemon, setInitialPokemon] = useState([]);
+
+  function handleSuggestClick() {
+    setActiveModal("suggest");
+  }
+
+  function closeActiveModal() {
+    setActiveModal("");
+  }
+
+  function resetPokemon() {
+    setPokemon(initialPokemon);
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function handleSuggest({ type1, type2 }) {
+    const filteredPokemon = pokemon.filter(
+      (item) =>
+        item.types.some((typeObj) => typeObj.type.name === type1) ||
+        item.types.some((typeObj) => typeObj.type.name === type2)
+    );
+    const shuffledPokemon = shuffleArray(filteredPokemon).slice(0, 6);
+    setPokemon(shuffledPokemon);
+    closeActiveModal();
+  }
+
+  useEffect(() => {
+    getPokemon()
+      .then((data) => pokemonData(data))
+      .then((pokemonInfo) => {
+        setPokemon(pokemonInfo);
+        setInitialPokemon(pokemonInfo);
+        setIsLoading(false);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="page">
+      <div className="page__content">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route
+            path="/dex"
+            element={
+              isLoading ? (
+                <Preloader />
+              ) : (
+                <PokedexPage
+                  handleSuggestClick={handleSuggestClick}
+                  resetPokemon={resetPokemon}
+                  pokemon={pokemon}
+                />
+              )
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      {activeModal === "suggest" && (
+        <SuggestTeamModal
+          isOpen={activeModal === "suggest"}
+          onClose={closeActiveModal}
+          handleSuggest={handleSuggest}
+        />
+      )}
+    </div>
   );
 }
 

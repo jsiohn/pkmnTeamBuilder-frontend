@@ -1,8 +1,16 @@
-# React + Vite
+# Pokemon Team Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Built using React, this is my Pokemon Team Suggester app. For now, it will only use the first generation of Pokemon.
+The landing page will tell about the function of the app and the Pokedex page will show the complete first generation of Pokemon.
+On the Pokedex page, a button labeled Suggest a Team will ask for two type choices and return up to 6 Pokemon that match the type choices.
+As of now, the function is pretty simple but I aim to add more functionality down the road.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- HTML, CSS, JavaScript, React, React Router, API
+- GitHub Pages
+- BEM
+
+### Link
+
+The project is hosted on GitHub Pages: [PkmnTeamBuilder](https://jsiohn.github.io/pkmnTeamBuilder-frontend/#/)

@@ -1,0 +1,25 @@
+.nav__links {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav__link:hover {
+  cursor: pointer;
+  color: #2f71e5;
+}
+
+@media screen and (max-width: 500px) {
+  .nav__links {
+    flex-direction: column;
+    gap: 10;
+  }
+}
